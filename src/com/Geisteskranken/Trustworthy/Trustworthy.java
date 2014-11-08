@@ -29,6 +29,7 @@ public class Trustworthy extends Thread {
 
 	@OnEnable
 	public void OnEnable(PluginContainer p) {
-		logger.info("Hello World!");
+		//TODO
+		//Nothing seems to get executed from down here. Strange.
 	}
 }
