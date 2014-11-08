@@ -17,27 +17,30 @@ public class TrustworthyStats {
 	public static String MINEBANS = "minebans";
 	public static String GLIZER = "glizer";
 
-	public static int getStats(String playername,String servicename){
+	public static int getStats(String playername, String servicename) {
 		URL url;
 		try {
-			url = new URL("http://www.fishbans.com/api/stats/"+playername+"/"+servicename+"/");
+			url = new URL("http://www.fishbans.com/api/stats/" + playername
+					+ "/" + servicename + "/");
 			String line;
 			StringBuilder builder = new StringBuilder();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
-			while((line = reader.readLine()) != null) {
-			 builder.append(line);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					url.openStream()));
+			while ((line = reader.readLine()) != null) {
+				builder.append(line);
 			}
 			JSONParser parser = new JSONParser();
 			Object obj = parser.parse(builder.toString());
-			
+
 			JSONObject jsonObject = (JSONObject) obj;
 			JSONObject bans = (JSONObject) jsonObject.get("stats");
-			if(bans == null){
+			if (bans == null) {
 				return 0;
 			}
 			JSONObject service = (JSONObject) bans.get("service");
 			long s = 0;
-			if(service.get(servicename) != null) s = (Long) service.get(servicename);
+			if (service.get(servicename) != null)
+				s = (Long) service.get(servicename);
 			return (int) s;
 		} catch (MalformedURLException e) {
 			return 0;
@@ -46,6 +49,6 @@ public class TrustworthyStats {
 		} catch (ParseException e) {
 			return 0;
 		}
-		
+
 	}
 }

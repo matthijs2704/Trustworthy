@@ -21,13 +21,14 @@ public class Trustworthy extends Thread {
 		if (TrustworthyConfig.readConfig()) {
 			logger.info(Name + "Everything appears OK");
 		} else {
-			//TODO
-			//Something didn't read OK, probably not an issue, most likely outcome is that they config file did not exist but was created.
+			// TODO
+			// Something didn't read OK, probably not an issue, most likely
+			// outcome is that they config file did not exist but was created.
 		}
 	}
 
 	@OnEnable
-	public void OnEnable(PluginContainer p){
+	public void OnEnable(PluginContainer p) {
 		logger.info("Hello World!");
 	}
 }

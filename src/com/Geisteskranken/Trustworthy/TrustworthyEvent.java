@@ -17,36 +17,38 @@ public class TrustworthyEvent {
 
 	@On(event = EventPlayerJoin.class)
 	public void event(EventPlayerJoin evt) {
-		if(Trustworthy.CheckLogin.equals("true")){
-		EventQueue.execute(new Runnable() {
-			public void run() {
-				String playa = evt.getPlayer().getName();
-				int MCBANS = TrustworthyStats.getStats(playa, "mcbans");
-				int MCBOUNCER = TrustworthyStats.getStats(playa, "mcbouncer");
-				int MCBLOCKIT = TrustworthyStats.getStats(playa, "mcblockit");
-				int MINEBANS = TrustworthyStats.getStats(playa, "minebans");
-				int GLIZER = TrustworthyStats.getStats(playa, "glizer");
+		if (Trustworthy.CheckLogin.equals("true")) {
+			EventQueue.execute(new Runnable() {
+				public void run() {
+					String playa = evt.getPlayer().getName();
+					int MCBANS = TrustworthyStats.getStats(playa, "mcbans");
+					int MCBOUNCER = TrustworthyStats.getStats(playa,
+							"mcbouncer");
+					int MCBLOCKIT = TrustworthyStats.getStats(playa,
+							"mcblockit");
+					int MINEBANS = TrustworthyStats.getStats(playa, "minebans");
+					int GLIZER = TrustworthyStats.getStats(playa, "glizer");
 
-				if (!((MCBANS + MCBOUNCER + MCBLOCKIT + MINEBANS + GLIZER) == 0)) {
-					for (Player p : Granite.getServer().getPlayers()) {
-						p.sendMessage(Trustworthy.Name
-								+ "§cPlayer '"
-								+ playa
-								+ "'"
-								+ " has "
-								+ String.valueOf(MCBANS + MCBOUNCER + MCBLOCKIT
-										+ MINEBANS + GLIZER)
-								+ " bans on record.");
+					if (!((MCBANS + MCBOUNCER + MCBLOCKIT + MINEBANS + GLIZER) == 0)) {
+						for (Player p : Granite.getServer().getPlayers()) {
+							p.sendMessage(Trustworthy.Name
+									+ "§cPlayer '"
+									+ playa
+									+ "'"
+									+ " has "
+									+ String.valueOf(MCBANS + MCBOUNCER
+											+ MCBLOCKIT + MINEBANS + GLIZER)
+									+ " bans on record.");
+						}
+					} else {
+						for (Player p : Granite.getServer().getPlayers()) {
+							p.sendMessage(Trustworthy.Name + "§aPlayer '"
+									+ playa + "' has no bans on records.");
+						}
 					}
-				} else {
-					for (Player p : Granite.getServer().getPlayers()) {
-						p.sendMessage(Trustworthy.Name + "§aPlayer '" + playa
-								+ "' has no bans on records.");
-					}
+
 				}
-
-			}
-		});
+			});
 		}
 
 	}
@@ -56,7 +58,10 @@ public class TrustworthyEvent {
 		if (!(info.args.length == 0)) {
 			String sender = info.getCommandSender().getName();
 			String playa = info.args[0];
-			Granite.getServer().sendMessage(Trustworthy.Name + "Player '" + sender + "' has requested a ban lookup for player '" + playa + "'");
+			Granite.getServer().sendMessage(
+					Trustworthy.Name + "Player '" + sender
+							+ "' has requested a ban lookup for player '"
+							+ playa + "'");
 			info.getCommandSender()
 					.sendMessage(
 							Trustworthy.Name
